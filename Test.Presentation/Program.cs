@@ -45,15 +45,26 @@ public static class Program
 
     private static void GetFactoryInfo(Factory factory)
     {
-        Console.Write($"\t-ID: {factory.Id}\n\t\t-Electricity per plan (P): {factory.P}" +
+        Console.Write($"\n\t-ID: {factory.Id}\n\t\t-Electricity per plan (P): {factory.P}" +
                       $"\n\t\t-Electricity in fact (F): {factory.F}" +
                       $"\n\t\t-Deviation from the plan (O1): {Math.Round(factory.O1, 2)} kWt" +
-                      $"\n\t\t-Deviation in fact (O2): {Math.Round(factory.O2,2)}");
+                      $"\n\t\t-Deviation in fact (O2): {Math.Round(factory.O2,2)} %");
     }
     
     private static void GetFactoryById()
     {
-        throw new NotImplementedException();
+        Console.Write("\nEnter factory identifier: ");
+        var factoryIdentifier = Convert.ToInt32(Console.ReadLine());
+
+        var factory = _factories.FirstOrDefault(f => f.Id == factoryIdentifier);
+
+        if (factory is null)
+        {
+            Console.WriteLine("\nFactory not found! Please, try again!");
+            return;
+        }
+
+        GetFactoryInfo(factory);
     }
 
     private static void GetFactories()
