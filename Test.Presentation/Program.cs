@@ -40,6 +40,9 @@ public static class Program
                 case 5:
                     Console.WriteLine("\nGood bye!");
                     return;
+                case 6: 
+                    Console.WriteLine("\nBonus. My congratulations! :)");
+                    break;
                 default:
                     Console.WriteLine("\nInvalid choice. Please, try again!");
                     break;
