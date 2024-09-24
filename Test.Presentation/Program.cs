@@ -12,7 +12,8 @@ public static class Program
             Console.WriteLine("1. Add factory");
             Console.WriteLine("2. Get factories information");
             Console.WriteLine("3. Get factory information by identifier");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Delete factory from list");
+            Console.WriteLine("5. Exit");
             
             Console.Write("Your choice: ");
             var userChoice = Console.ReadLine();
@@ -34,13 +35,40 @@ public static class Program
                     GetFactoryById();
                     break;
                 case 4:
+                    DeleteFactory();
+                    break;
+                case 5:
                     Console.WriteLine("\nGood bye!");
                     return;
+                case 6: 
+                    Console.WriteLine("\nBonus. My congratulations! :)");
+                    break;
+                case 7: 
+                    Console.WriteLine("\nOhhhh nooooo. It's not i wanted! :)");
+                    break;
                 default:
                     Console.WriteLine("\nInvalid choice. Please, try again!");
                     break;
             }
         }
+    }
+
+    private static void DeleteFactory()
+    {
+        Console.Write("\nEnter factory identifier: ");
+        var factoryIdentifier = Convert.ToInt32(Console.ReadLine());
+
+        var factory = _factories.FirstOrDefault(f => f.Id == factoryIdentifier);
+
+        if (factory is null)
+        {
+            Console.WriteLine("\nFactory not found! Please, try again!");
+            return;
+        }
+
+        _factories.Remove(factory);
+        
+        Console.WriteLine("\nFactory has been successfully deleted from the factories list!");
     }
 
     private static void GetFactoryInfo(Factory factory)
